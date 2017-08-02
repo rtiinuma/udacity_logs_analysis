@@ -18,7 +18,16 @@ Date: 8/2/2017
   * `articles`
   * `authors`
   * `log`
+- Create `toparticle` view
+``` 
+CREATE VIEW toparticles AS 
+ SELECT substring(path from '%/article/#"%#"' for '#') as article, COUNT(path) as cnt
+ FROM log 
+ WHERE path LIKE '%/article/%' 
+ GROUP BY path;
+```
 - Run `python3 analysis.py`
+- Program queries `news` database to answer each question
 - Program will print results to the console
 
 ## Output
